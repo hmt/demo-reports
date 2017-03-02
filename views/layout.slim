@@ -3,5 +3,18 @@ html lang="en"
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
+    javascript:
+      if (typeof module === 'object') {window.module = module; module = undefined;}
+    script type="text/javascript" src=url("/assets/jquery-3.1.1.min.js")
+    javascript:
+      if (window.module) module = window.module;
+      $(function() {
+        $('img[data-failover]').on("error", function(){
+          var failover = $(this).data('failover');
+          if (this.src != failover){
+            this.src = failover;
+          }
+        });
+      });
   body
     ==yield
