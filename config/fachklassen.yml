@@ -1,0 +1,273 @@
+---
+# Erläuterung der fachklassen.yml:
+# erste Zeile ist die Fachklassenkennung, unter der Schild die Ausbildungen sortiert
+# hier müssen alle Schulformen angelegt werden, da viele Informationen nicht in Schild abgelegt sind,
+# bzw. praktischer hier sind.
+# Zusätzliche Strings lassen sich hier ebenfalls anlegen, je nach Bedarf
+#
+# Ändern sich Angaben im Laufe der Zeit, so kann _vor_ den letzten Wert eine Jahreszahl
+# gesetzt werden und Sahib wählt den String, der <= abschnittsjahr ist.
+# z.B.
+# Bereich:
+#   2013: Bereich Erziehung und Soziales
+#   2015: Bereich Erziehung, Hauswirtschaft und Soziales
+#
+#   Für Dokumente ab 2015 wir letzteres gewählt, Dokumente in 2013 und 14 wählen
+#   ersteres.
+#
+default: #Fallback für alle anderen Fachklassen
+  Schulform: Schulform fehlt
+  Bereich: Bereich fehlt
+  Zeugniskopf: ohne Angabe
+  Berufsbezeichnung_m: männliche Berufsbezeichnung
+  Berufsbezeichnung_w:
+    2008: weibliche Berufsbezeichnung 2009
+    2012: weibliche Berufsbezeichnung
+  Fachgruppe:
+    10: üblicherweise allgemeinbildende Fächer
+    20: üblicherweise berufsbezogene Fächer
+    30: üblicherweise Fächer des Differenzierungsbereichs
+
+10-106-00: #Erzieher AHR
+  Schulform: Berufliches Gymnasium, Bereich Gesundheit und Soziales
+  Bereich:
+    2012: Bereich Erziehung und Soziales
+    # 2013: Bereich Gesundheit und Soziales
+    2013: Erzieherin/AHR, Erzieher/AHR
+  Zeugniskopf: des Bildungsgangs Erzieher/AHR
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Examen: staatliche Berufsabschlussprüfung für Erzieherinnen/Erzieher
+  Berufsbezeichnung_m: Staatlich anerkannter Erzieher
+  Berufsbezeichnung_w: Staatlich anerkannte Erzieherin
+  Fremdsprache:
+    114: (B2/C1)
+
+10-140-00: #Staatliche gerprüfte Fachkraft für die heilpädagogische Förderung mit dem Pferd
+
+10-121-00: #Staatlich geprüfter Sozialhelfer/Heilerziehungshelfer
+  Schulform: Berufsfachschule
+  Bereich:
+    2013: Bereich Sozial- und Gesundheitswesen
+    2014: Fachbereich Gesundheit/Erziehung und Soziales
+  Abschluss: true
+  Examen: Berufsabschlussprüfung
+  Zeugniskopf:
+    2013: des Bildungsgangs Berufsfachschule für Sozial- und Gesundheitswesen
+    2014: Berufsfachschule für Gesundheit/Erziehung und Soziales
+  Berufsbezeichnung_m:
+    2013: Staatlich geprüfter Sozialhelfer
+    2014: Staatlich geprüfter Sozialassistent, Schwerpunkt Heilerziehung
+  Berufsbezeichnung_w:
+    2013: Staatlich geprüfte Sozialhelferin
+    2014: Staatlich geprüfte Sozialassistentin, Schwerpunkt Heilerziehung
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Fremdsprache:
+    114: (B1)
+
+93-103-01: #Staatlich geprüfter Sozialhelfer/Heilerziehungshelfer 2016
+  Schulform: Berufsfachschule
+  Bereich:
+    Fachbereich Gesundheit/Erziehung und Soziales
+  Abschluss: true
+  Examen: Berufsabschlussprüfung
+  Zeugniskopf:
+    Berufsfachschule für Gesundheit/Erziehung und Soziales
+  Berufsbezeichnung_m:
+    Staatlich geprüfter Sozialassistent, Schwerpunkt Heilerziehung
+  Berufsbezeichnung_w:
+    Staatlich geprüfte Sozialassistentin, Schwerpunkt Heilerziehung
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Fremdsprache:
+    114: (B1)
+
+93-103-00: #Staatlich geprüfter Sozialassistent 2016
+  Schulform: Berufsfachschule
+  Bereich:
+    Fachbereich Gesundheit/Erziehung und Soziales
+  Berufsbezeichnung_m:
+    Staatlich geprüfter Sozialassistent
+  Berufsbezeichnung_w:
+    Staatlich geprüfte Sozialassistentin
+  Abschluss: true
+  Examen: Berufsabschlussprüfung
+  Zeugniskopf: Berufsfachschule für Sozial- und Gesundheitswesen
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Fremdsprache:
+    114: (B1)
+
+60-151-00: #Staatlich geprüfter Sozialhelfer
+  Schulform: Berufsfachschule
+  Bereich:
+    2013: Bereich Sozial- und Gesundheitswesen
+    2014: Fachbereich Gesundheit/Erziehung und Soziales
+  Berufsbezeichnung_m:
+    2013: Staatlich geprüfter Sozialhelfer
+    2014: Staatlich geprüfter Sozialassistent
+  Berufsbezeichnung_w:
+    2013: Staatlich geprüfte Sozialhelferin
+    2014: Staatlich geprüfte Sozialassistentin
+  Abschluss: true
+  Examen: Berufsabschlussprüfung
+  Zeugniskopf: Berufsfachschule für Sozial- und Gesundheitswesen
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Fremdsprache:
+    114: (B1)
+
+10-147-00: #Staatlich geprüfter Sozialhelfer
+  Schulform: Berufsfachschule
+  Bereich:
+    2013: Bereich Sozial- und Gesundheitswesen
+    2014: Fachbereich Gesundheit/Erziehung und Soziales
+  Berufsbezeichnung_m:
+    2013: Staatlich geprüfter Sozialhelfer
+    2014: Staatlich geprüfter Sozialassistent
+  Berufsbezeichnung_w:
+    2013: Staatlich geprüfte Sozialhelferin
+    2014: Staatlich geprüfte Sozialassistentin
+  Abschluss: true
+  Examen: Berufsabschlussprüfung
+  Zeugniskopf: Berufsfachschule für Sozial- und Gesundheitswesen
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Fremdsprache:
+    114: (B1)
+
+10-109-00: #Fachoberschule (FOS 12 und 11)
+  Schulform: Fachoberschule
+  Bereich: Fachrichtung Gesundheit und Soziales
+  Zeugniskopf: Fachoberschule mit dem fachlichen Schwerpunkt Gesundheit und Soziales
+  Fachgruppe:
+    10: Berufsübergreifender Bereich
+    20: Berufsbezogener Bereich
+    30: Differenzierungsbereich
+  Fremdsprache:
+    114: (B2)
+
+100-102-01: #Staatlich anerkannter Erzieher
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Sozialpädagogik
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Bereich
+    30: Differenzierungsbereich
+  Lernbereich: Bildungsbereiche in der Kinder- und Jugendarbeit
+  Lernfeld_Lernbereich: Vertiefung in den Bildungsbereichen
+  Lernfeld_Lernbereich_LF: Lernfelder
+  Zeugniskopf:
+    2012: der Fachschule für Sozialwesen in der Fachrichtung Sozialpädagogik
+    2013: Fachschule für Sozialwesen in der Fachrichtung Sozialpädagogik
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    19: (B2)
+
+100-102-02: #Staatlich anerkannter Erzieher - Berufspraktikum
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Sozialpädagogik
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Bereich
+    30: Differenzierungsbereich
+  Lernbereich: Bildungsbereiche in der Kinder- und Jugendarbeit
+  Lernfeld_Lernbereich: Vertiefung in den Bildungsbereichen
+  Lernfeld_Lernbereich_LF: Lernfelder
+  Zeugniskopf:
+    2012: der Fachschule für Sozialwesen in der Fachrichtung Sozialpädagogik
+    2013: Fachschule für Sozialwesen in der Fachrichtung Sozialpädagogik
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    19: (B2)
+
+40-102-05: #Staatlich anerkannter Erzieher - praxisintegrierte Form
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Sozialpädagogik – praxisintegrierte Form
+  Zeugniskopf:
+    2012: der Fachschule für Sozialwesen in der Fachrichtung Sozialpädagogik – praxisintegrierte Form
+    2013: Fachschule für Sozialwesen in der Fachrichtung Sozialpädagogik
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Bereich
+    30: Differenzierungsbereich
+  Lernbereich: Bildungsbereiche in der Kinder- und Jugendarbeit
+  Lernfeld_Lernbereich: Vertiefung in den Bildungsbereichen
+  Lernfeld_Lernbereich_LF: Lernfelder
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    19: (B2)
+
+10-101-01: #Staatlich anerkannter Heilerziehungspfleger
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Heilerziehungspflege
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Lernbereich
+    30: Differenzierungsbereich
+  Lernbereich: Heilerziehungspflegerische Schwerpunkte
+  Zeugniskopf: Fachschule für Sozialwesen in der Fachrichtung Heilerziehungspflege
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    19: (B2)
+
+10-101-02: #Staatlich anerkannter Heilerziehungspfleger - Berufspraktikum
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Heilerziehungspflege
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Lernbereich
+    30: Differenzierungsbereich
+  Lernbereich: Heilerziehungspflegerische Schwerpunkte
+  Zeugniskopf: Fachschule für Sozialwesen in der Fachrichtung Heilerziehungspflege
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    19: (B2)
+
+40-101-05: #Staatlich anerkannter Heilerziehungspfleger- praxisintegrierte Form
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Heilerziehungspflege – praxisintegrierte Form
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Lernbereich
+    30: Differenzierungsbereich
+  Lernbereich: Heilerziehungspflegerische Schwerpunkte
+  Zeugniskopf: Fachschule für Sozialwesen in der Fachrichtung Heilerziehungspflege
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    19: (B2)
+
+210-111-02: #Staatlich anerkannter Heilpädagoge
+  Schulform: Fachschule im Bereich Sozialwesen
+  Bereich: Fachrichtung Heilpädagogik
+  Fachgruppe:
+    10: Fachrichtungsübergreifender Bereich
+    20: Fachrichtungsbezogener Bereich
+    30: Differenzierungsbereich
+  Lernbereich: Methoden in der Heilpädagogik und den Bereichen
+  Lernfeld_Lernbereich: Vertiefung in den Bildungsbereichen
+  Lernfeld_Lernbereich_LF: Lernfelder
+  Zeugniskopf: Fachschule für Sozialwesen in der Fachrichtung Heilpädagogik
+  Fehlstunden: false
+  Examen: Fachschulexamen
+  Fremdsprache:
+    252: (B2)

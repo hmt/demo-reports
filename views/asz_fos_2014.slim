@@ -1,0 +1,87 @@
+#doc-einstellungen data-json='{"logo_top":"asz_logo_ohne_linie_breiter_text_breit.svg","logo_seite":"traeger_logo.svg","Deckblatt":"deckblatt_komp.svg","Name":"Abschlusszeugnis FOS","Gruppen":["C"],"Format":"A3","Orientierung":"landscape","Ignoriere-Abschnitt":1}'
+link rel="stylesheet" href=url("/assets/bootstrap/3.3.5/bootstrap.min.css")
+link rel="stylesheet" href=url("/css/print.css")
+link href=url("/css/print_a3.css") rel="stylesheet" media="all"
+-schueler.each_with_index do |s,i|
+  -next if !s.daten_vollstaendig? [s._durchschnittsnote_fhr, s.bk_abschluss], "Es fehlen die notwendingen Daten zum Abschluss. Berechnung in Schild durchgeführt?"
+  -hj=s.halbjahr(jahr, abschnitt)
+  /* -if ENV["S_DECKBLATT"] */
+  /*   .page */
+  /*     img src=url("/images/deckblatt_komp.svg") data-failover=url("/images/#{Document.default "Deckblatt"}" )*/
+  .page
+    .seitenlogo
+      img src=url("/images/#{doc.get("logo_seite")}") height="160px" data-failover=url("/images/#{Document.default "logo_seite"}")
+    .subpage.font-size-11
+      .row
+        .col-xs-12
+          img src=url("/images/#{doc.get("logo_top")}") width="100%" data-failover=url("/images/#{Document.default "logo_top"}")
+          hr.hr-rot
+      .row
+        .col-xs-6
+          .col-xs-11
+            ==partial :p_zeugnis_kopf, :s => s, :hj => hj, :repo => repo
+            ==partial :p_asz_zeugnis_noten, :s => s, :hj => hj, :repo => repo
+            ==partial :p_zeugnis_bemerkungen, :s => s, :hj => hj
+        .col-xs-6
+          .col-xs-11.col-xs-offset-1
+            .row
+              .col-xs-12
+                .voffset-1
+                  |#{s.anrede} #{s.vorname} #{s.name} hat die Fachhochschulreifeprüfung
+                   im Bildungsgang der Fachoberschule in der Fachrichtung Gesundheit
+                   und Soziales bestanden.
+                  br/
+                  |
+                  -unless s.vermerke.find{|v| v.vermerkart_id == 7}
+                     |Der Nachweis der fachpraktischen Ausbildung
+                      wurde durch die erfolgreiche Ableistung des Praktikantenjahres im
+                      Rahmen der Klasse 11 der Fachoberschule erbracht.
+                  -else
+                    =s.vermerke.find{|v|v.vermerkart_id == 7}.bemerkung
+                  .voffset-3
+                    |#{s.anrede}#{s.geschlecht==3 ? "n":""} #{s.vorname} #{s.name} wird die
+                  .voffset-2
+                  h3.text-center Fachhochschulreife
+                  .voffset-2
+                  |zuerkannt. Sie berechtigt zum Studium an einer Fachhochschule und
+                   entsprechenden sowie integrierten Bildungsgängen der Gesamthochschulen
+                   im Geltungsbereich des Grundgesetzes.
+                  .voffset-2
+                  table.table-noten
+                    tr
+                      td Durschnittsnote:
+                      td.td-fach-note
+                        span =s.durchschnittsnote_fhr
+                      td in&nbsp;Worten:
+                      td.td-fach-note
+                        span =s.durchschnittsnote_fhr_in_worten
+                  .voffset-7
+                  ==partial :p_zeugnis_unterschrift_pa, :hj => hj
+
+        / liegt unterhalb von .subpage, da .page padding hat und der footer oberhalb platziert wird.
+      .pull-bottom.klein
+        .row
+          .col-xs-12
+            .schulnummer.grau Schulnummer: #{Schule.schulnummer}
+            hr.hr-grau
+            .row.grau
+              .col-xs-6
+                .col-xs-11
+                  .grau
+                    =partial repo.textbaustein hj, 'Notenstufen'
+                    p
+                    sup.grau 1
+                    =partial repo.textbaustein hj, 'Fremdsprachenniveau'
+                    br/
+                    sup.grau *
+                    |Die Noten der gekennzeichneten Fächer gehen
+                    u.grau<> nicht
+                    |in die Berechnung der Durchnittsnote für die Fachochschulreife ein.
+              .col-xs-6
+                .col-xs-11.col-xs-offset-1
+                  .grau
+                    'Dem Zeugnis liegen zugrunde:
+                    =partial repo.textbaustein hj, 'APO'
+                    p
+                    'Rechtsbehelfsbelehrung:
+                    ==partial repo.textbaustein hj, "Rechtsbehelfsbelehrung"

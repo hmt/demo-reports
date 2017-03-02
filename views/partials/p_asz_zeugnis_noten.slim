@@ -1,0 +1,38 @@
+-notenquelle ||= :note_abschluss
+.row
+  .col-xs-12
+    table.col-xs-12.table-noten
+      -hj.faechergruppen.each do |gruppe|
+        -unless gruppe.empty?
+          tr
+            td.fachgruppe-margin
+              b =repo.fachklasse_info(hj, 'Fachgruppe', gruppe.first.fachgruppe_ID)
+            td
+          -lernbereich_ab = gruppe.index{ |f| f.fach.SortierungS2.to_s[-1] == "1"}
+          -gruppe.each_with_index do |fach,i|
+            -fach_gliederung=fach.fach.gliederungen.find{|f|f.fachklasse == s.fachklasse}
+            -fach_gliederung ? (zeugnisbez, gewichtung = fach_gliederung.zeugnis_bez, fach_gliederung.gewichtung_ab) : (zeugnisbez, gewichtung = fach.fach.zeugnisbez, fach.fach.gewichtung_fhr)
+            -if i == lernbereich_ab
+              tr
+                td.fach-bezeichnung colspan="2"
+                  =repo.fachklasse_info(hj, "Lernbereich")
+            tr
+              td.fach-bezeichnung class=("lernbereich" if fach.fach.SortierungS2.to_s[-1] == "1") class=("fett" if fach.bezeichnung == "Projekt" && fach.fach.ist_sprache == "-")
+                ==zeugnisbez
+                -sprache= fach._lernentw || repo.fachklasse_info(hj, "Fremdsprache", fach.fach_id)
+                -unless sprache.nil? || fach.fach.ist_sprache == "-"
+                  =<sprache
+                  sup 1
+                -if s.asd_schulform.start_with?("C") and gewichtung == 0 || !gewichtung
+                  -if s.bk_abschluss.bestanden == "+" || s.bk_abschluss.bestanden_ba == "+"
+                    sup ="*"
+                -if s.asd_schulform.start_with?("E") && gewichtung >= 1 && s._entlassart == "6J"
+                  sup ="*"
+              td.td-fach-note
+                span class=("e-note" if (fach.noten_krz.start_with?("E") || (s.asd_schulform.start_with?("D")) && (fach.fachgruppe_ID == 30) && (fach.noten_krz == "NB") ))
+                  =s.bk_abschluss_leistungen_dataset.where(:Fach_ID => fach.fach_id).first.note(notenquelle) || "––––––" rescue (Warnung.add(s.name, "Einige Fächer sind ohne eingetragene Note in der BK-Abschlussberechnung.");"FEHLER")
+              -projektarbeitstitel_abschnitt=s.abschnitte.map{|a| a.noten.find{|n|n.fach.bezeichnung=="Projekt" && n._lernentw}}.find{|a|a}
+              -projektarbeitstitel = projektarbeitstitel_abschnitt.lernentw if projektarbeitstitel_abschnitt
+              -if fach.fach.bezeichnung == "Projekt" && fach.fach.ist_sprache == "-"
+                tr
+                  td.fach-bezeichnung ==projektarbeitstitel

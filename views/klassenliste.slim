@@ -1,0 +1,39 @@
+#doc-einstellungen data-json='{"logo_top":"bk_logo_ohne_text.svg","logo_seite":"traeger_logo.svg","Name":"Klassenliste"}'
+link rel="stylesheet" href=url("/assets/bootstrap/3.3.5/bootstrap.min.css")
+link rel="stylesheet" href=url("/css/print.css")
+link href=url("/css/print_a4.css") rel="stylesheet" media="all"
+  .page
+    .seitenlogo
+      img src=url("/images/#{doc.get("logo_seite")}") height="160px" data-failover=url("/images/#{Document.default "logo_seite"}")
+    .subpage
+      .row
+        .col-xs-12
+          img src=url("/images/#{doc.get('logo_top')}") width="100%" data-failover=url("/images/#{Document.default 'logo_top'}")
+          hr.hr-rot
+      .row
+        .col-xs-12
+            b
+              -s=schueler.first
+              ="#{s.klasse} – #{s.akt_halbjahr.v_name_klassenlehrer}, Stand: #{Time.now.strftime("%d.%m.%Y")}"
+            table.table.table-eng
+              -schueler.each_with_index do |s,i|
+                tr
+                  td
+                    =i+1
+                  td
+                    b =s.name
+                  td
+                    b =s.vorname
+                  td
+                    =s.adresse
+                  td
+                    =s.telefon
+                tr
+                  td
+                  td
+                    =s.geburtsdatum.strftime "%d.%m.%Y"
+                  td
+                  td
+                    =s.e_mail
+                  td
+                    =s.fax

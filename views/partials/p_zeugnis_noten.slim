@@ -1,0 +1,32 @@
+.row
+  .col-xs-12
+    table.col-xs-12.table-noten
+      -gr=hj.faechergruppen
+      /berufs- und berufsübergreifenden Bereich tauschen
+      -gr[0], gr[1] = gr[1], gr[0]
+      -gr.each do |gruppe|
+        -unless gruppe.empty?
+          -gruppe.sort_by! do |f|
+            -fach_gliederung=f.fach.gliederungen.find{|f|f.fachklasse == s.fachklasse}
+            -(fach_gliederung && fach_gliederung.sortierung) || f.fach.sortierung_s2
+          tr
+            td.fachgruppe-margin
+              b =repo.fachklasse_info(hj, 'Fachgruppe', gruppe.first.fachgruppe_ID)
+            td
+          -lernbereich_ab = gruppe.index{ |f| f.fach.bezeichnung != f.fach.zeugnisbez}
+          -gruppe.each_with_index do |fach,i|
+            -if i == lernbereich_ab
+              tr
+                td.fach-bezeichnung colspan="2"
+                  =fach.fach.bezeichnung
+            tr
+              td.fach-bezeichnung class=("lernbereich" if fach.fach.bezeichnung != fach.fach.zeugnisbez) class=("fett" if fach._lernentw && fach.fach.ist_sprache == "-")
+                ==fach.fach.zeugnisbez
+                ==< "#{fach.lernentw}<sup>1</sup>" if fach.fach.ist_sprache == "+" && fach._lernentw
+              /td=fach.fach.SortierungS2
+              td.td-fach-note
+                span class=("e-note" if (fach.noten_krz.start_with?("E") || (s.asd_schulform.start_with?("D")) && (fach.fachgruppe_ID == 30) && (fach.noten_krz == "NB") ))
+                  =fach.note || "––––––"
+              -if fach.Lernentw && fach.fach.ist_sprache == "-"
+                tr
+                  td.fach-bezeichnung #{fach._lernentw}

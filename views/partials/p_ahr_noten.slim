@@ -1,0 +1,33 @@
+.row
+  .col-xs-11
+    table.table.table-bordered.table-eng
+      tr
+        td rowspan="2"
+          |Fach
+          sup 1
+        td rowspan="2" width="20px"
+          |Aufg.- feld
+          sup 2
+        td rowspan="2" width="20px"
+          |Abitur- fach
+          sup 3
+        td rowspan="2" width="20px"
+          |Fach der Berufs- abschlussprüfung
+        td colspan="4"
+          |Leistungen im Halbjahr
+          sup 4, 5
+      tr
+        td.text-center 12.1
+        td.text-center 12.2
+        td.text-center 13.1
+        td.text-center 13.2
+      -s.abi_abschluss_leistungen.sort_by{|f|f.f_sortierung}.each do |f|
+        tr
+          td =f.fach.bezeichnung
+          td.text-center ="I"*(f.fach.aufgabenfeld).to_i
+          td.text-center =f.abi_fach
+          td.text-center ="+" if f.abi_fach.to_i.between?(1,3) || f.fach_krz == "DM"
+          td.text-center =f.P12_1 || "–"
+          td.text-center =f.P12_2 || "–"
+          td.text-center =f.P13_1 || "–"
+          td.text-center =f.P13_2 || "–"

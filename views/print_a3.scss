@@ -1,0 +1,10 @@
+.page {
+  width: 420mm;
+  height: 296mm;
+}
+@media print {
+  @page {
+    size: A3 landscape;
+  }
+}
+
