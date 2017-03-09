@@ -23,7 +23,7 @@ link href=url("/css/print_a4.css") rel="stylesheet" media="all"
               -bb=(s.geschlecht==3 ? 'Berufsbezeichnung_m':'Berufsbezeichnung_w')
               |Abschluss #{repo.fachklasse_info(hj, bb)}
           .voffset-1
-          b #{s.anrede} #{s.vorname} #{s.zusatz} #{s.name}
+          b #{s.anrede} #{s.vorname} #{s._zusatz} #{s.name}
           br /
           |geboren am #{(s.geburtsdatum).strftime("%d.%m.%Y")} in #{s.geburtsort}
           br /

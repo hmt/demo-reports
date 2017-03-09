@@ -20,7 +20,7 @@ link href=url("/css/print_a4.css") rel="stylesheet" media="all"
             |#{repo.fachklasse_info hj,  "Schulform"}
           .voffset-halb
           '#{s.anrede}
-          b> #{s.vorname} #{s.zusatz} #{s.name}
+          b> #{s.vorname} #{s._zusatz} #{s.name}
           |geboren am #{(s.geburtsdatum).strftime("%d.%m.%Y")} in #{s.geburtsort}
           br/
           'besuchte im Schuljahr #{hj.schuljahr} die Jahrgangsstufe #{(hj.asd_jahrgang.to_i)+10}.#{hj.abschnitt}
